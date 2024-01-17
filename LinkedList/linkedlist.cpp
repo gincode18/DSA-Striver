@@ -11,7 +11,7 @@ public:
         next = NULL;
     }
 };
-void push(Node *head, int x)
+void push(Node *&head, int x)
 {
     Node *temp = new Node(x);
     temp->next = head;
