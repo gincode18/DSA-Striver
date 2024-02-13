@@ -45,7 +45,6 @@ public class LoopDetect {
         list = push(41, list);
         list = push(5, list);
         list = push(10, list);
-    
 
         LoopDetect ld = new LoopDetect();
         System.out.println("Loop detected: " + ld.LoopDetect(list));
