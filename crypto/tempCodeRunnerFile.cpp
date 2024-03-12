@@ -1,36 +1,51 @@
 #include <iostream>
-#include <string>
 #include <vector>
+#include <string>
+#include <cmath> // For sqrt function
 
-std::string permute(std::string k, std::vector<int> arr, int n) {
-    std::string permutation = "";
+using namespace std;
+
+vector<vector<int> > getKeyMatrix(string key, int n) {
+    vector<vector<int> > keyMatrix(n, vector<int>(n, 0));
+    int idx = 0;
     for (int i = 0; i < n; i++) {
-        permutation += k[arr[i] - 1];
+        for (int j = 0; j < n; j++) {
+            keyMatrix[i][j] = (key[idx] % 65);
+            idx++;
+        }
     }
-    return permutation;
+    return keyMatrix;
 }
 
-std::pair<std::string, std::string> generateKeys(std::string key) {
-    std::string k1 = key.substr(0, 8);
-    std::string k2 = key.substr(2, 8);
-    return std::make_pair(k1, k2); // Use make_pair
-}
-
-std::string sdesEncrypt(std::string plaintext, std::string key) {
-    auto keys = generateKeys(key); // Store the pair returned by generateKeys
-    std::string k1 = keys.first;
-    std::string k2 = keys.second;
-
-    std::string initialPermutation = plaintext;
-    std::string afterRoundFunction = initialPermutation;
-    std::string ciphertext = afterRoundFunction;
-    return ciphertext;
+string encrypt(string text, vector<vector<int> > keyMatrix) {
+    string cipher = "";
+    int n = keyMatrix.size();
+    for (int i = 0; i < text.length(); i += n) {
+        for (int j = 0; j < n; j++) {
+            int temp = 0;
+            for (int k = 0; k < n; k++) {
+                temp += ((keyMatrix[j][k] * (text[i + k] % 65)) % 26);
+            }
+            cipher += (temp % 26 + 65);
+        }
+    }
+    return cipher;
 }
 
 int main() {
-    std::string key = "1010000010";
-    std::string plaintext = "11010111";
-    std::string ciphertext = sdesEncrypt(plaintext, key);
-    std::cout << "Ciphertext: " << ciphertext << std::endl;
+    string text = "HELLO"; // Example plaintext
+    string key = "GYBNQKURP"; // Example key
+
+    // Ensure the text length is a multiple of the square root of the key length
+    int n = sqrt(key.length());
+    if (text.length() % n != 0) {
+        text += string(n - (text.length() % n), 'X');
+    }
+
+    vector<vector<int> > keyMatrix = getKeyMatrix(key, n);
+    string cipherText = encrypt(text, keyMatrix);
+
+    cout << "Encrypted Text: " << cipherText << endl;
+
     return 0;
 }
