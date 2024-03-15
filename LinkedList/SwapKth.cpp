@@ -27,17 +27,18 @@ void print(Node *head)
     }
     cout << endl;
 }
+
 Node *swapkth(Node *head, int num, int K)
 {
     if (K > num)
     {
         return head;
     }
-    if (2*K-1==num)
+    if (2 * K - 1 == num)
     {
-       return head;
+        return head;
     }
-    
+
     int count = 1;
     Node *curr = head;
     Node *first, *second = NULL;
@@ -48,18 +49,17 @@ Node *swapkth(Node *head, int num, int K)
         {
             first = curr;
         }
-        if (count == num - K+1)
+        if (count == num - K + 1)
         {
             second = curr;
         }
         count++;
         curr = curr->next;
     }
-    int temp=first->data;
-    first->data=second->data;
-    second->data=temp;
+    int temp = first->data;
+    first->data = second->data;
+    second->data = temp;
     return head;
-
 }
 int main()
 {
@@ -69,8 +69,8 @@ int main()
     push(x, 2);
     push(x, 1);
     print(x);
-    Node*y=swapkth(x,5,3);
+    Node *y = swapkth(x, 5, 3);
     print(y);
-    
+
     return 0;
 }
