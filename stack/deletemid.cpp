@@ -16,14 +16,9 @@ public:
     void deleteMid(stack<int> &s, int sizeOfStack)
     {
         int count = 0;
-        if (sizeOfStack % 2 == 0)
-        {
-            count = (sizeOfStack / 2) - 1;
-        }
-        else
-        {
-            count = sizeOfStack / 2;
-        }
+
+        count = sizeOfStack / 2;
+
         vector<int> arr;
         for (int i = 0; i < count; i++)
         {
@@ -32,7 +27,7 @@ public:
             arr.push_back(x);
         }
         s.pop();
-        for (int i = 0; i <count; i++)
+        for (int i = count - 1; i >= 0; i--)
         {
             s.push(arr[i]);
         }
