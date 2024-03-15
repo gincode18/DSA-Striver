@@ -31,7 +31,8 @@ public:
             s.pop();
             arr.push_back(x);
         }
-        for (int i = 0; i <= count; i++)
+        s.pop();
+        for (int i = 0; i <count; i++)
         {
             s.push(arr[i]);
         }
