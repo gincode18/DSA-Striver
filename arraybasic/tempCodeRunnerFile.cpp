@@ -1,1 +1,2 @@
-    int numbernext=arr[1];
+
+ int num=3;
