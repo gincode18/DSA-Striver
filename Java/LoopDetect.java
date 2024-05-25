@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class LoopDetect {
@@ -42,15 +43,21 @@ public class LoopDetect {
 
     public static void main(String arg[]) {
         Node list = new Node(20);
-        list = push(41, list);
-        list = push(5, list);
-        list = push(10, list);
+        ArrayList<String> test = new ArrayList<String>();
+        test.add("wfdw");
+        String s = "vishal";
+        String[] m;
+        m = s.split("");
+        Stack st = new Stack<>();
+        st.push(1);
+        st.push(10);
+        int d[]={1,23,23};
+       
+        // LoopDetect ld = new LoopDetect();
+        // System.out.println("Loop detected: " + ld.LoopDetect(list));
 
-        LoopDetect ld = new LoopDetect();
-        System.out.println("Loop detected: " + ld.LoopDetect(list));
-
-        // Print the linked list
-        System.out.println("Linked List:");
-        printLinkedList(list);
+        // // Print the linked list
+        // System.out.println("Linked List:");
+        // printLinkedList(list);
     }
 }
